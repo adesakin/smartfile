@@ -20,6 +20,7 @@ class TestPath < MiniTest::Test
     s.setup(:whoami)
     params = {:attribute => "query"}
     res = s.get(params)
+
     # assert_requested :get, res
   end
 
