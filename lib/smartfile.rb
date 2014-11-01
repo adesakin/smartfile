@@ -70,12 +70,12 @@ class SmartFile
         @request = Net::HTTP::Post::Multipart.new uri.path, params
       else
         @request = Net::HTTP::Post.new(uri.request_uri)
+        @request.set_form_data(params)
       end
     when "put"
       @request = Net::HTTP::Put.new(uri.request_uri)
     end
     @request.basic_auth(@key, @pass)
-    @request.set_form_data(params)
     @response = http.request(@request)
     
     if full_response
