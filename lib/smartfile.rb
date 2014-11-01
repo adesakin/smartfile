@@ -23,18 +23,20 @@ class SmartFile
   # valid formats - [json] [json-p] [json-t] [html] [xhtml] [txt] [xml]
   def setup(endpoint, format = "json")
     case endpoint
-      when :path_info
-        @service_path = "/ping/?format=#{format}"
-      when :path_data
-        @service_path = "/whoami/?format=#{format}"
-      when :session
-        @service_path = "/session/?format=#{format}"
-      when :ping
-        @service_path = "/ping/?format=#{format}"
-      when :whoami
-        @service_path = "/whoami/?format=#{format}"
-      when :session
-        @service_path = "/session/?format=#{format}"  
+    when :path_info
+      @service_path = "/ping/?format=#{format}"
+    when :path_data
+      @service_path = "/whoami/?format=#{format}"
+    when :session
+      @service_path = "/session/?format=#{format}"
+    when :ping
+      @service_path = "/ping/?format=#{format}"
+    when :whoami
+      @service_path = "/whoami/?format=#{format}"
+    when :session
+      @service_path = "/session/?format=#{format}" 
+    else
+      @service_path = "#{endpoint.to_s}?format=#{format}"
     end
   end
 

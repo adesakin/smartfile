@@ -36,7 +36,7 @@ Create the file config/initializers:
 
     call = SmartFile.new
     params = {:attribute => "query"}
-    call.setup(:whoami, format = "json")
+    call.setup(:whoami, format = "json") # extended to support string path i.e call.setup("/whoami/", format = "json")
     
     # regular get
     result = call.get(params)
