@@ -51,6 +51,14 @@ Create the file config/initializers:
     puts result.body
     '{"ping": "pong"}'
 
+    # multipart post with multiple files
+    f1 = UploadIO.new(File.new("filer1.png"), "image/png", "filer1.png")
+    f2 = UploadIO.new(File.new("filer2.txt"), "text/plain", "filer2.txt")
+    params = {"1" => f1, "2" => f2}
+    result = call.post(params, ,true)
+
+
+
 
 ## Valid Return Formats: 
   - json
