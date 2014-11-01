@@ -11,8 +11,10 @@ class SmartFile
   attr_accessor :response, :json_response
 
   def initialize()
-    @key = SMARTFILE_CONFIG['key']
-    @pass = SMARTFILE_CONFIG['pass']
+    # @key = SMARTFILE_CONFIG['key']
+    # @pass = SMARTFILE_CONFIG['pass']
+    @key = "XXxYzujLMnLqaYULpDOajJUkA7OlKz"
+    @pass = "s81HjkTz9O1sUMuTjTpFq5Bn2creW0"
     @base_url = "https://app.smartfile.com/api/2"
     @service_path = ""
   end
@@ -42,15 +44,15 @@ class SmartFile
   end
 
   def get(params = {}, full_response = false)
-    method_request("get", params = {}, full_response = false)
+    method_request("get", params, full_response)
   end
 
   def post(params = {}, full_response = false, multipart=false)
-    method_request("post", params = {}, full_response = false, multipart=false)
+    method_request("post", params, full_response, multipart)
   end
 
   def put(params = {}, full_response = false)
-    method_request("put", params = {}, full_response = false)
+    method_request("put", params, full_response)
   end
 
 
@@ -66,7 +68,8 @@ class SmartFile
     when "get"
       @request = Net::HTTP::Get.new(uri.request_uri)
     when "post"
-      if multipart
+      if multipart == true
+        puts "Using Post Multipart"
         @request = Net::HTTP::Post::Multipart.new uri.path, params
       else
         @request = Net::HTTP::Post.new(uri.request_uri)
@@ -83,5 +86,9 @@ class SmartFile
     else
       return @response.body
     end
+  end
+
+  def get_request
+    @request
   end
 end
