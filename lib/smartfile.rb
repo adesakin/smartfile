@@ -45,8 +45,8 @@ class SmartFile
     method_request("get", params = {}, full_response = false)
   end
 
-  def post(params = {}, full_response = false)
-    method_request("post", params = {}, full_response = false)
+  def post(params = {}, full_response = false, multipart=false, *multipart_args)
+    method_request("post", params = {}, full_response = false, multipart=false, *multipart_args)
   end
 
   def put(params = {}, full_response = false)
