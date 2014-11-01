@@ -1,6 +1,7 @@
 require "net/https"
 require "uri"
 require "yaml"
+require 'net/http/post/multipart'
 
 
 class SmartFile
@@ -53,7 +54,7 @@ class SmartFile
   end
 
 
-  def method_request(method, params = {}, full_response = false)
+  def method_request(method, params = {}, full_response = false, multipart=false, *multipart_args)
     uri = URI.parse(full_url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
@@ -65,7 +66,14 @@ class SmartFile
     when "get"
       @request = Net::HTTP::Get.new(uri.request_uri)
     when "post"
-      @request = Net::HTTP::Post.new(uri.request_uri)
+      if multipart
+        files = ''
+        multipart_args.map {|m| files = files + UploadIO.new(File.new(m.path), m.type, m.name) + ',' }
+        files = files.chomp(',')
+        @request = Net::HTTP::Post::Multipart.new uri.path, files
+      else
+        @request = Net::HTTP::Post.new(uri.request_uri)
+      end
     when "put"
       @request = Net::HTTP::Put.new(uri.request_uri)
     end

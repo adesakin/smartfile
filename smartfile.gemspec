@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec"
   s.add_development_dependency 'minitest', '~> 2.2.0'
   s.add_development_dependency 'http', '~> 0.6.0'
+  s.add_development_dependency 'multipart-post'
   s.add_development_dependency 'webmock'
 
  

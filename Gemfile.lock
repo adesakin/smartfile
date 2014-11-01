@@ -14,6 +14,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     minitest (2.2.2)
+    multipart-post (2.0.0)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -37,6 +38,7 @@ PLATFORMS
 DEPENDENCIES
   http (~> 0.6.0)
   minitest (~> 2.2.0)
+  multipart-post
   rspec
   smartfile!
   webmock
