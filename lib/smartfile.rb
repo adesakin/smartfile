@@ -68,7 +68,7 @@ class SmartFile
     when "post"
       if multipart
         files = ''
-        multipart_args.map {|m| files = files + UploadIO.new(File.new(m.path), m.type, m.name) + ',' }
+        multipart_args.map {|m| files = files + UploadIO.new(File.new(m[:path]), m[:type], m[:name]) + ',' }
         files = files.chomp(',')
         @request = Net::HTTP::Post::Multipart.new uri.path, files
       else
